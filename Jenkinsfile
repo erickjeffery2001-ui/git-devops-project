@@ -14,7 +14,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                sudo docker build -t pipeline-app .
+                docker build -t pipeline-app .
                 '''
             }
         }
@@ -28,9 +28,9 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 sh '''
-                sudo docker stop pipeline-app || true
-                sudo docker rm pipeline-app || true
-                sudo docker run -d -p 80:80 --name pipeline-app pipeline-app
+                docker stop pipeline-app || true
+                docker rm pipeline-app || true
+                docker run -d -p 80:80 --name pipeline-app pipeline-app
                 '''
             }
         }
